@@ -198,6 +198,7 @@ class RoleCodename(Enum):
     THIRD_PARTY_RESPONDENT = "BI-RL-TPR"
     AUDITEE = "BI-RL-ADE"
     TECHNICAL_TESTER = "BI-RL-TST"
+    TASK_COMPLETER = "BI-RL-TCO"
 
     def __str__(self) -> str:
         return self.value
@@ -412,6 +413,11 @@ BUILTIN_ROLE_TRANSLATIONS = {
         "uk": {"name": "Респондент"},
         "ur": {"name": "جواب دہندہ"},
         "zh": {"name": "受访者"},
+    },
+    "BI-RL-TCO": {
+        "en": {"name": "Task completer"},
+        "fr": {"name": "Exécutant de tâches"},
+        "nl": {"name": "Taakuitvoerder"},
     },
     "BI-RL-TST": {
         "en": {"name": "Technical tester"},

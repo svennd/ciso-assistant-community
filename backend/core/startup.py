@@ -2045,6 +2045,24 @@ AUDITEE_PERMISSIONS_LIST = [
 ]
 
 
+# Task execution and evidence submission within the assigned folder perimeter.
+# Deliberately excludes deletion and permissions on unrelated GRC objects.
+TASK_COMPLETER_PERMISSIONS_LIST = [
+    "view_folder",
+    "view_tasktemplate",
+    "add_tasktemplate",
+    "change_tasktemplate",
+    "view_tasknode",
+    "change_tasknode",
+    "view_evidence",
+    "add_evidence",
+    "change_evidence",
+    "view_evidencerevision",
+    "add_evidencerevision",
+    "change_evidencerevision",
+]
+
+
 TECHNICAL_TESTER_PERMISSIONS_LIST = [
     "add_postureassessment",
     "view_postureassessment",
@@ -2234,6 +2252,7 @@ def startup(sender=None, **kwargs):
         ),
         (RoleCodename.AUDITEE.value, AUDITEE_PERMISSIONS_LIST),
         (RoleCodename.TECHNICAL_TESTER.value, TECHNICAL_TESTER_PERMISSIONS_LIST),
+        (RoleCodename.TASK_COMPLETER.value, TASK_COMPLETER_PERMISSIONS_LIST),
     ):
         role, _ = Role.objects.get_or_create(name=name, builtin=True)
         role.permissions.set(Permission.objects.filter(codename__in=perm_list))
