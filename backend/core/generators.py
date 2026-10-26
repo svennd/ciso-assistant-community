@@ -893,12 +893,11 @@ def gen_audit_context(id, tree, lang, assessments=None, charts=True):
     # Calculate category scores
     category_scores = aggregate_category_scores(tree)
 
-    max_score = 100  # default
-    for node in tree.values():
-        if node.get("max_score") is not None:
-            max_score = node["max_score"]
-            break
-    print(category_scores)
+    max_score = audit.max_score if audit.max_score is not None else None
+    if max_score is None:
+        max_score = audit.framework.max_score
+    if max_score is None:
+        max_score = 100  # default
 
     for key, content in tree.items():
         total = sum(result_counts[content["urn"]].values())
